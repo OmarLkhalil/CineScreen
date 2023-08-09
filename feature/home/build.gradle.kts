@@ -1,7 +1,8 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -60,8 +61,6 @@ dependencies {
     implementation(libs.accompanist.navigation.animation)
     implementation(libs.accompanist.placeholder)
     implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.qrcode)
-    implementation(libs.line.awesome.icons)
 
 
     val composeBom = platform(libs.androidx.compose.bom)
@@ -83,4 +82,13 @@ dependencies {
 
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.tv.foundation)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.paging.compose)
+    implementation(libs.paging)
+
+    implementation(libs.coil.compose)
 }
