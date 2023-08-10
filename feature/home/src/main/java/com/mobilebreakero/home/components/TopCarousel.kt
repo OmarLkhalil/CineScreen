@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,7 +30,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.tv.material3.Carousel
 import androidx.tv.material3.CarouselDefaults
@@ -59,15 +57,17 @@ fun CarouselIndicatorWithRectangleShape(viewModel: MoviesViewModel = hiltViewMod
 
     } else {
 
+        val count = movies.itemCount
+
         Carousel(
-            itemCount = movies.itemCount,
+            itemCount = count,
             modifier = Modifier
                 .height(300.dp)
                 .fillMaxWidth(),
             carouselState = carouselState,
             carouselIndicator = {
                 CarouselDefaults.IndicatorRow(
-                    itemCount = movies.itemCount,
+                    itemCount = 10,
                     activeItemIndex = carouselState.activeItemIndex,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)

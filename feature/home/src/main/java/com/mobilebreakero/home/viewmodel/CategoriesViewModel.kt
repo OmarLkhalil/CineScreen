@@ -32,7 +32,6 @@ class CategoriesViewModel @Inject constructor(private val catsUseCase: Categorie
         _selectedGenre.value = _selectedGenre.value
     }
 
-
     init {
         getGenre()
     }

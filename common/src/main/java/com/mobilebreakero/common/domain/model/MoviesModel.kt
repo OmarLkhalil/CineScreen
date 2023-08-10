@@ -12,4 +12,5 @@ data class MovieItem(
     val id: Long? = 0L,
     val posterUrl: String? = "",
     val name: String? = "",
+    val videoUrl: String? = "",
 )

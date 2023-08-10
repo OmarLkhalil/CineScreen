@@ -69,7 +69,6 @@ dependencies {
 
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.materialWindow)
-    implementation(libs.androidx.compose.material.iconsExtended)
     implementation (project(":common"))
 
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -91,4 +90,6 @@ dependencies {
     implementation(libs.paging)
 
     implementation(libs.coil.compose)
+
+
 }

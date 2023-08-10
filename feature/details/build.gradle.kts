@@ -2,6 +2,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,35 +53,49 @@ android {
 
 dependencies {
 
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.leanback)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.google.android.material)
+    // jetpack compose
     implementation(libs.accompanist.navigation.animation)
     implementation(libs.accompanist.placeholder)
     implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.qrcode)
-    implementation(libs.line.awesome.icons)
-
-
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
-    implementation (project(":common"))
-
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.materialWindow)
-    implementation(libs.androidx.compose.material.iconsExtended)
-
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
-
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.coil.compose)
 
+    //Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //ViewModel && Lifecycle
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime)
+
+    // core Kotlin
+    implementation(libs.androidx.core.ktx)
+
+    // tv material
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.tv.foundation)
+
+    // common module
+    implementation(project(":common"))
+
+    // Media3 ExoPlayer
+    implementation(libs.media3.ui)
+    implementation(libs.media3.exoplayer.dash)
+    implementation(libs.media3.datasource.cronet)
+    implementation(libs.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
 }
