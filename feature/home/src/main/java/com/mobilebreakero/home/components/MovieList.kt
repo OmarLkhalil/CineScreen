@@ -7,14 +7,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.tv.foundation.lazy.list.TvLazyRow
-import com.mobilebreakero.common.domain.model.MovieItem
 import com.mobilebreakero.home.viewmodel.MoviesViewModel
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun MovieList(viewModel: MoviesViewModel = hiltViewModel()) {
+fun MovieList(viewModel: MoviesViewModel = hiltViewModel(), navController: NavController) {
 
 
     Column(
@@ -27,7 +27,6 @@ fun MovieList(viewModel: MoviesViewModel = hiltViewModel()) {
         if (viewModel.movies.value.isLoading) {
             CircularProgressIndicator()
         } else {
-
             TvLazyRow(
                 content = {
                     items(movies.itemCount) { index ->
@@ -36,7 +35,11 @@ fun MovieList(viewModel: MoviesViewModel = hiltViewModel()) {
                                 .padding(8.dp)
                                 .size(120.dp, 120.dp)
                         ) {
-                            movies[index]?.let { MoviesItem(movie = it) }
+                            movies[index]?.let {
+                                MoviesItem(
+                                    movie = it,
+                                    onItemClick = { navController.navigate("DetailsScreen?movieId=${it.id.toString()}") })
+                            }
                         }
                     }
                 }

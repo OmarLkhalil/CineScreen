@@ -4,7 +4,6 @@ package com.mobilebreakero.home.components
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.mobilebreakero.common.domain.model.GenreItemModel
 import com.mobilebreakero.home.viewmodel.CategoriesViewModel
 import com.mobilebreakero.home.viewmodel.MoviesViewModel
@@ -24,7 +24,8 @@ import java.util.Locale
 @Composable
 fun GenreList(
     genreViewModel: CategoriesViewModel = hiltViewModel(),
-    moviesViewModel: MoviesViewModel = hiltViewModel()
+    moviesViewModel: MoviesViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val genres = genreViewModel.genres.value.genre
 
@@ -64,7 +65,7 @@ fun GenreList(
                 Locale.getDefault().language,
                 genreViewModel.selectedGenre.value.id.toString()
             )
-            MovieList()
+            MovieList(navController = navController)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.mobilebreakero.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,7 @@ import com.mobilebreakero.common.domain.model.MovieItem
 import com.mobilebreakero.home.Constants
 
 @Composable
-fun MoviesItem(movie: MovieItem) {
+fun MoviesItem(movie: MovieItem, onItemClick: () -> Unit) {
 
     Box(
         modifier = Modifier
@@ -44,7 +45,7 @@ fun MoviesItem(movie: MovieItem) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.2f))
+                .background(Color.Black.copy(alpha = 0.2f)).clickable { onItemClick() }
         )
         Row(
             modifier = Modifier

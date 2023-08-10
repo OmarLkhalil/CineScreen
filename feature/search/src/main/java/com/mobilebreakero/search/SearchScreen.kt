@@ -1,4 +1,4 @@
-package com.mobilebreakero.home.screens
+package com.mobilebreakero.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -12,25 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.mobilebreakero.home.components.CarouselIndicatorWithRectangleShape
-import com.mobilebreakero.home.components.GenreList
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
-    HomeContent(navController = navController)
-}
-
-@Composable
-fun HomeContent(navController : NavController){
+fun SearchScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
             .fillMaxSize().background(Color.Black).verticalScroll(rememberScrollState())
     ) {
-        CarouselIndicatorWithRectangleShape()
-        Spacer(modifier = Modifier.height(10.dp))
-        GenreList(navController = navController)
     }
 
 }
