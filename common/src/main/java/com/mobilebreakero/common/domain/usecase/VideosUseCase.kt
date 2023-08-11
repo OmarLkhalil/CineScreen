@@ -1,6 +1,5 @@
 package com.mobilebreakero.common.domain.usecase
 
-import com.mobilebreakero.common.domain.model.VideoItemModel
 import com.mobilebreakero.common.domain.model.VideosModel
 import com.mobilebreakero.common.domain.repository.VideoRepository
 import com.mobilebreakero.common.domain.util.Resource

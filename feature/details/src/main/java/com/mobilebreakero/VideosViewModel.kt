@@ -8,27 +8,19 @@ import com.mobilebreakero.common.domain.usecase.VideosUseCase
 import com.mobilebreakero.common.domain.util.DetailsState
 import com.mobilebreakero.common.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val getVideosUseCase: VideosUseCase) :
+class VideosViewModel @Inject constructor(private val getVideosUseCase: VideosUseCase) :
     ViewModel() {
 
-    private val _state = mutableStateOf(DetailsState())
-    private val _videoKey = MutableStateFlow<String?>(null)
-    val videoKey: StateFlow<String?> = _videoKey
-    private val movieId = "569094"
+    val _state = mutableStateOf(DetailsState())
+    var videoKey = mutableStateOf(String())
 
 
-
-    fun fetchVideoDetails() {
-
+    fun fetchVideos(movieId: String) {
         try {
             getVideosUseCase(movieId).onEach { result ->
                 when (result) {
@@ -37,9 +29,10 @@ class DetailsViewModel @Inject constructor(private val getVideosUseCase: VideosU
                             video = result.data!!.videos
                         )
                         if (result.data!!.videos.isNotEmpty()) {
-                            Log.e("DetailsViewModel", "fetchVideoDetails: $videoKey")
+                            videoKey.value = result.data!!.videos[0].key.toString()
+                            Log.e("VideosViewModel", "fetchVideoDetails: $videoKey")
                         } else {
-                            Log.e("DetailsViewModel", "fetchVideoDetails: Video list is empty")
+                            Log.e("VideosViewModel", "fetchVideoDetails: Video list is empty")
                         }
                     }
 

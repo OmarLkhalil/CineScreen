@@ -15,14 +15,13 @@ import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.mobilebreakero.common.domain.model.VideoItemModel
 import com.mobilebreakero.details.DetailsScreen
 import com.mobilebreakero.home.screens.HomeScreen
 import com.mobilebreakero.search.SearchScreen
 
 @Composable
 fun MainScreen(lifecycleOwner: LifecycleOwner) {
-    Scaffold() { contentPadding ->
+    Scaffold { contentPadding ->
         MainNavHost(Modifier.padding(contentPadding), lifecycleOwner)
     }
 }
