@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.mobilebreakero.home"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkTv.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -54,41 +54,39 @@ android {
 dependencies {
 
 
+    // compose core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.leanback)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.google.android.material)
-    implementation(libs.accompanist.navigation.animation)
-    implementation(libs.accompanist.placeholder)
-    implementation(libs.androidx.lifecycle.runtime)
-
-
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+     // compose ui material
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.materialWindow)
+    implementation(libs.androidx.compose.material)
     implementation (project(":common"))
 
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
+    // compose navigation
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.constraintlayout.compose)
+
+    // lifecycle
+    implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
 
+    // tv material
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.tv.foundation)
 
+    // dagger - hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // pagination
     implementation(libs.paging.compose)
     implementation(libs.paging)
 
+    // coil compose
     implementation(libs.coil.compose)
 
 

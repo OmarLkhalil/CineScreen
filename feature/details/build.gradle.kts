@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.mobilebreakero.details"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkTv.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -54,30 +54,29 @@ android {
 dependencies {
 
     // jetpack compose
-    implementation(libs.accompanist.navigation.animation)
-    implementation(libs.accompanist.placeholder)
-    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.core.ktx)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
+
+    // compose material
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.materialWindow)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.material)
+
+    // compose navigation
     implementation(libs.androidx.navigation.compose)
+
+
+    // lifecycle
+    implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
-    implementation(libs.coil.compose)
 
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    //ViewModel && Lifecycle
-    implementation(libs.androidx.lifecycle.viewModelCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.runtime)
 
     // core Kotlin
     implementation(libs.androidx.core.ktx)
@@ -89,13 +88,10 @@ dependencies {
     // common module
     implementation(project(":common"))
 
-    // Media3 ExoPlayer
-    implementation(libs.media3.ui)
-    implementation(libs.media3.exoplayer.dash)
-    implementation(libs.media3.datasource.cronet)
-    implementation(libs.media3.exoplayer)
-    implementation(libs.androidx.media3.ui)
+    // coil compose
+    implementation(libs.coil.compose)
 
+    // youtube video player
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
 }

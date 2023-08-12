@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.qrcode)
     implementation(libs.line.awesome.icons)
+    implementation("androidx.core:core-ktx:+")
 
 
     val composeBom = platform(libs.androidx.compose.bom)

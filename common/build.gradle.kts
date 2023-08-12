@@ -9,11 +9,10 @@ plugins {
 
 android {
     namespace = "com.mobilebreakero.common"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-
+        minSdk = libs.versions.minSdkTv.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -38,6 +37,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.core.ktx)
 
     // retrofit
     implementation(libs.retrofit.gson)

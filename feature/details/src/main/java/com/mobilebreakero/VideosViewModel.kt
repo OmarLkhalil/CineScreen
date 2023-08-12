@@ -1,6 +1,7 @@
 package com.mobilebreakero
 
 import android.util.Log
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,6 +20,7 @@ class VideosViewModel @Inject constructor(private val getVideosUseCase: VideosUs
     val _state = mutableStateOf(DetailsState())
     var videoKey = mutableStateOf(String())
 
+    var videos: State<DetailsState> = _state
 
     fun fetchVideos(movieId: String) {
         try {
@@ -26,11 +28,10 @@ class VideosViewModel @Inject constructor(private val getVideosUseCase: VideosUs
                 when (result) {
                     is Resource.Success -> {
                         _state.value = DetailsState(
-                            video = result.data!!.videos
+                            video = result.data?.videos ?: emptyList()
                         )
                         if (result.data!!.videos.isNotEmpty()) {
                             videoKey.value = result.data!!.videos[0].key.toString()
-                            Log.e("VideosViewModel", "fetchVideoDetails: $videoKey")
                         } else {
                             Log.e("VideosViewModel", "fetchVideoDetails: Video list is empty")
                         }
@@ -42,7 +43,9 @@ class VideosViewModel @Inject constructor(private val getVideosUseCase: VideosUs
                         )
                     }
 
-                    else -> {}
+                    else -> {
+                        _state.value = DetailsState(isLoading = true)
+                    }
                 }
             }.launchIn(viewModelScope)
         } catch (e: Exception) {
