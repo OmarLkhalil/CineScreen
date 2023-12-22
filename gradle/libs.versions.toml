@@ -25,7 +25,7 @@ timber = "5.0.1"
 # @keep
 compileSdk = "34"
 compose-snapshot = "-"
-coroutines = "1.7.2"
+coroutines = "1.7.3"
 google-maps = "18.1.0"
 hilt = "2.47"
 hiltExt = "1.0.0"
